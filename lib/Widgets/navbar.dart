@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Bottom Navigation Bar for Home Screen
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
 
@@ -37,16 +38,16 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin{
         controller: controller,
           onTap: (index) {},
           tabs: const [
-            Tab(
-                icon: Icon(Icons.home),
-                text: "Search",
-            ),
-            Tab(
-                icon: Icon(Icons.image_search),
-                text: "saved",
-            ),
-            Tab(
-              icon: Icon(Icons.music_note_outlined),
+        Tab(
+          icon: Icon(Icons.home),
+          text: "Search",
+        ),
+        Tab(
+          icon: Icon(Icons.image_search),
+          text: "saved",
+        ),
+        Tab(
+          icon: Icon(Icons.music_note_outlined),
               text: "saved",
             ),
             Tab(
