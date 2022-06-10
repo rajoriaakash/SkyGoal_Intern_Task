@@ -271,6 +271,10 @@ class _Home3State extends State<Home3> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
+                                      Image.asset(
+                                          "assets/images/like1.png",
+                                        height: _height*17,
+                                      ),
                                       // ImageIcon(
                                       //     AssetImage("assets/images/like1.png"),
                                       //   size: 5,

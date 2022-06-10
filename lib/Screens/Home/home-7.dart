@@ -11,7 +11,8 @@ class HostelFacility extends StatefulWidget {
 class _HostelFacilityState extends State<HostelFacility> {
   Color selected = Colors.white;
   Color notSelected = Color(0xff0E3C6E);
-  bool isSelected = false;
+  List<bool> isSelected = [false,false,false,false];
+
   List hostel = ["assets/images/hostel1.png","assets/images/hostel2.png","assets/images/hostel3.png"];
   int currentPos = 0;
   @override
@@ -23,6 +24,7 @@ class _HostelFacilityState extends State<HostelFacility> {
     _height = _height/_figmaheight;
     _width = _width/_figmawidth;
 
+
     return Container(
       padding: EdgeInsets.all(_height*31),
       child: Column(
@@ -33,130 +35,195 @@ class _HostelFacilityState extends State<HostelFacility> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: (){},
-                child: Container(
-                  margin: EdgeInsets.all(_height*9),
-                  height: _height*31,
-                  width: _width*69,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff0E3C6E)),
-                      borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.bed_rounded,
-                        color: notSelected,
-                        size: 17,
-                      ),
-                      Text(
-                        "4",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color:notSelected,
-                            fontSize: 13
+              SizedBox(
+                height:_height*50 ,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 4,
+                    itemBuilder: (context, index){
+                    return GestureDetector(
+                      onTap: (){
+                        setState((){
+                          isSelected[index] = !isSelected[index];
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(_height*9),
+                        height: _height*31,
+                        width: _width*69,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xff0E3C6E)),
+                          borderRadius: BorderRadius.circular(5),
+                          color: isSelected[index]? notSelected : selected,
+
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Icon(
+                              Icons.bed_rounded,
+                              color:isSelected[index]? selected :notSelected,
+                              size: 17,
+                            ),
+                            Text(
+                              "${ 4- index}",
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  color:isSelected[index]? selected :notSelected,
+                                  fontSize: 13
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    );
+                    }
                 ),
-              ),
-              GestureDetector(
-                onTap: (){
-                  isSelected = ! isSelected;
-                },
-                child: Container(
-                  margin: EdgeInsets.all(_height*9),
-                  height: _height*31,
-                  width: _width*69,
-                  decoration: BoxDecoration(
-                    color: notSelected,
-                      border: Border.all(color: Color(0xff0E3C6E)),
-                      borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.bed_rounded,
-                        color: selected,
-                        size: 17,
-                      ),
-                      Text(
-                        "3",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color:selected,
-                            fontSize: 13
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: (){},
-                child: Container(
-                  margin: EdgeInsets.all(_height*9),
-                  height: _height*31,
-                  width: _width*69,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff0E3C6E)),
-                      borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.bed_rounded,
-                        color: notSelected,
-                        size: 17,
-                      ),
-                      Text(
-                        "2",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color:notSelected,
-                            fontSize: 13
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: (){},
-                child: Container(
-                  margin: EdgeInsets.all(_height*9),
-                  height: _height*31,
-                  width: _width*69,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff0E3C6E)),
-                      borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.bed_rounded,
-                        color: notSelected,
-                        size: 17,
-                      ),
-                      Text(
-                        "1",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color:notSelected,
-                            fontSize: 13
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              
+              )
+              // GestureDetector(
+              //   onTap: (){
+              //     setState((){
+              //       isSelected[0] = !isSelected[0];
+              //     });
+              //   },
+              //   child: Container(
+              //     margin: EdgeInsets.all(_height*9),
+              //     height: _height*31,
+              //     width: _width*69,
+              //     decoration: BoxDecoration(
+              //         border: Border.all(color: Color(0xff0E3C6E)),
+              //         borderRadius: BorderRadius.circular(5),
+              //         color: isSelected[0]? notSelected : selected,
+              //     ),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         Icon(
+              //           Icons.bed_rounded,
+              //           color: isSelected[0]? selected :notSelected,
+              //           size: 17,
+              //         ),
+              //         Text(
+              //           "4",
+              //           textAlign: TextAlign.end,
+              //           style: TextStyle(
+              //               color:isSelected[0]? selected :notSelected,
+              //               fontSize: 13
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // GestureDetector(
+              //   onTap: (){
+              //     setState((){
+              //       isSelected[1] = !isSelected[1];
+              //     });
+              //   },
+              //   child: Container(
+              //     margin: EdgeInsets.all(_height*9),
+              //     height: _height*31,
+              //     width: _width*69,
+              //     decoration: BoxDecoration(
+              //         color:isSelected[1]? notSelected :selected,
+              //         border: Border.all(color: Color(0xff0E3C6E)),
+              //         borderRadius: BorderRadius.circular(5)
+              //     ),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         Icon(
+              //           Icons.bed_rounded,
+              //           color:isSelected[1]? selected :notSelected,
+              //           size: 17,
+              //         ),
+              //         Text(
+              //           "3",
+              //           textAlign: TextAlign.end,
+              //           style: TextStyle(
+              //               color:isSelected[1]? selected :notSelected,
+              //               fontSize: 13
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // GestureDetector(
+              //   onTap: (){
+              //     setState((){
+              //       isSelected[2] = !isSelected[2];
+              //     });
+              //   },
+              //   child: Container(
+              //     margin: EdgeInsets.all(_height*9),
+              //     height: _height*31,
+              //     width: _width*69,
+              //     decoration: BoxDecoration(
+              //         border: Border.all(color: Color(0xff0E3C6E)),
+              //         borderRadius: BorderRadius.circular(5),
+              //       color: isSelected[2]? notSelected : selected,
+              //
+              //     ),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         Icon(
+              //           Icons.bed_rounded,
+              //           color:isSelected[2]? selected :notSelected,
+              //           size: 17,
+              //         ),
+              //         Text(
+              //           "2",
+              //           textAlign: TextAlign.end,
+              //           style: TextStyle(
+              //               color:isSelected[2]? selected :notSelected,
+              //               fontSize: 13
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // GestureDetector(
+              //   onTap: (){
+              //     setState((){
+              //       isSelected[3] = !isSelected[3];
+              //     });
+              //   },
+              //   child: Container(
+              //     margin: EdgeInsets.all(_height*9),
+              //     height: _height*31,
+              //     width: _width*69,
+              //     decoration: BoxDecoration(
+              //         border: Border.all(color: Color(0xff0E3C6E)),
+              //         borderRadius: BorderRadius.circular(5),
+              //       color: isSelected[3]? notSelected : selected,
+              //
+              //     ),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         Icon(
+              //           Icons.bed_rounded,
+              //           color:isSelected[3]? selected :notSelected,
+              //           size: 17,
+              //         ),
+              //         Text(
+              //           "1",
+              //           textAlign: TextAlign.end,
+              //           style: TextStyle(
+              //               color:isSelected[3]? selected :notSelected,
+              //               fontSize: 13
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+
             ],
           ),
           CarouselSlider(
